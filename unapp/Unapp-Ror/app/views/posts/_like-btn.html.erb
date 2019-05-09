@@ -1,0 +1,5 @@
+  <a href="#" class="dislike_btn glyphicon glyphicon-thumbs-down" id="dislike_btn_<%=post.id%>" data-id="<%=post.id%>" data-url="<%=delete_like_post_path(post, user_id: current_user.id)%>" style="<%=@liked ? '' : 'display:none;' %>"
+    >unlike</a>
+  <a href="#" class="like_btn glyphicon glyphicon-thumbs-up" id="like_btn_<%=post.id%>" data-id="<%=post.id%>" data-url="<%=add_like_post_path(post, user_id: current_user.id)%>" style="<%= @liked ? 'display:none;' : '' %>"
+    >like</a>
+  <%= post.likes.size %>

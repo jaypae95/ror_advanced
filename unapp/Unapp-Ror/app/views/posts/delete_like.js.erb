@@ -1,0 +1,14 @@
+$("#like_partial_<%= @post.id %>").html(
+  '<%= j render "like-btn", liked: @liked, post: @post%>'
+);
+$(".like_btn, .dislike_btn").off("click");
+// $("body").off("click", ".like_btn, .dislike_btn");
+$(".like_btn, .dislike_btn ").click(function () {
+  let post_id = $(this).data("id");
+  console.log("post : "+ post_id);
+  console.log("new : "+ post_id);
+
+  let redirect_path = $(this).data("url");
+  $.get(redirect_path);
+  return false;
+})
