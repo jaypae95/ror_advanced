@@ -1,0 +1,24 @@
+<% title ||= nil %>
+<% body ||= nil %>
+<% link_name ||= nil %>
+<% link ||= nil %>
+
+<section id="home" class="video-hero bg-main-1" data-section="home">
+	<div class="overlay"></div>
+	<a class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=vqqt5p0q-eU',containment:'#home', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, quality:'default'}"></a>
+	<div class="display-t text-center">
+		<div class="display-tc">
+			<div class="container">
+				<div class="col-md-12 col-md-offset-0">
+					<div class="animate-box">
+						<h2><%= link_to title, posts_path %></h2>
+						<p><%= body %></p>
+						<p>
+              <%= link_to link_name, link %>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

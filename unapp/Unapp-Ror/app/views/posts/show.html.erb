@@ -1,0 +1,15 @@
+<%= render 'layouts/hero', title: @post.title, body: @post.created_at.strftime("%Y %M %d"), link_name: "Edit", link: edit_post_path(@post) %>
+<div class="container">
+  <%=@post.created_at.strftime("%Y %M %d")%><br>
+  <%=@post.title %><br>
+  <%=@post.body %><br>
+
+  <% if @post.likes.where({user_id: current_user.id}).present? %>
+  <%= link_to "", delete_like_post_path(@post, user_id: current_user.id, show: "true"), class: "glyphicon glyphicon-thumbs-down" %>
+  <% else %>
+    <%= link_to "", add_like_post_path(@post, user_id: current_user.id, show: "true"), class: "glyphicon glyphicon-thumbs-up" %>
+  <% end %>
+  <%= @post.likes.count %>
+
+  <%= link_to "delete", post_path(@post), data: {method: :delete} %>
+</div>

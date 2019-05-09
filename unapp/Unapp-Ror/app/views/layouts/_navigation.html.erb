@@ -1,0 +1,60 @@
+<div class="colorlib-loader"></div>
+
+<div id="page">
+	<nav class="colorlib-nav" role="navigation">
+		<div class="top-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2">
+						<div id="colorlib-logo">
+							<%= link_to root_path do %>Unapp
+								<% end %>
+						</div>
+					</div>
+					<div class="col-md-10 text-right menu-1">
+						<ul>
+							<li class="active">
+								<%= link_to "Home", pages_about_path %>
+							</li>
+							<li class="has-dropdown">
+								<%= link_to "Work", pages_work_path %>
+									<ul class="dropdown">
+										<li>
+											<%= link_to "Work Grid", pages_work_grid_path %>
+										</li>
+										<li>
+											<%= link_to "Work Grid Without Text", pages_work_grid_without_text_path %>
+										</li>
+									</ul>
+							</li>
+							<li>
+								<%= link_to "Services", pages_services_path %>
+							</li>
+							<li>
+								<%= link_to "Blog", posts_path %>
+							</li>
+							<li>
+								<%= link_to "About", pages_about_path %>
+							</li>
+							<li>
+								<%= link_to "Contact", pages_contact_path %>
+							</li>
+							<li>
+								<% if current_user %>
+								<li style="color:red;">
+									<%= link_to "sign out", destroy_user_session_path, :method => :delete %>
+									<%= link_to "my post", myposts_posts_path %>
+									<%= current_user.email %>
+								</li>
+								<%else%>
+								<li>
+									<%= link_to "sign in", new_user_session_path %>
+								</li>
+								<% end %>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>

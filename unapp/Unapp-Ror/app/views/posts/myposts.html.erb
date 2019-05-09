@@ -1,0 +1,33 @@
+<%= render 'layouts/hero', title: "Jay's Blog", body: "Welcome To Jay's Blog", link_name: "New", link: new_post_path %>
+
+<div class="colorlib-blog">
+  <div class="container">
+    <% current_user.posts.each_with_index do |post, index| %>
+      <% if index % 3 == 0 %>
+        <div class="row">
+        <% end %>
+        <div class="col-md-4 animate-box">
+          <article>
+            <h2>
+              <%= link_to post.title, post_path(post) %>
+            </h2>
+            <p class="admin">
+              <span><%= post.created_at.strftime("%M %d, %Y")%></span>
+            </p>
+            <p><%= post.body %></p>
+            <p class="author-wrap">
+              <%=image_tag("person1.jpg",class:"author-img", alt: "")%>
+              <span style="margin-left:50px;"><%= post.user.email %></span>
+
+            </p>
+            <br>
+            <%= link_to "edit", edit_post_path(post)%>
+            <%= link_to "delete", post_path(post), data: {method: :delete} %>
+          </article>
+        </div>
+        <% if index % 3 == 2 %>
+        </div>
+      <%end%>
+  <%end%>
+</div>
+</div>
