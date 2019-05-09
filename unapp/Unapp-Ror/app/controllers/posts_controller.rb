@@ -41,17 +41,13 @@ before_action :authenticate_user!, except: :index
     if !(@post.likes.where(user_id: current_user.id).present?)
       @post.likes.create(user_id: current_user.id)
     end
-
-    redirect_url = params["show"] == "true" ? post_path(@post) : posts_path
-    redirect_to redirect_url
+  @liked = @post.likes.where(user: current_user).present?
   end
 
   def delete_like
     @post = Post.find(params[:id])
     @post.likes.where({user_id: current_user.id}).first.destroy
-
-    redirect_url = params["show"] == "true" ? post_path(@post) : posts_path
-    redirect_to redirect_url
+    @liked = @post.likes.where(user: current_user).present?
   end
 
   private

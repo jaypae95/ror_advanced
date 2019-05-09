@@ -23,42 +23,31 @@
 					<%= link_to "edit", edit_post_path(post)%>
 					<%= link_to "delete", post_path(post), data: {method: :delete} %>
 					<% if current_user %>
-						<% liked = post.likes.where(user: current_user).present? %>
-						<!-- <%= link_to "", delete_like_post_path(post, user_id: current_user.id, show: "false"), class: "like_btn glyphicon glyphicon-thumbs-down" %> -->
-							<a href="#" class="unlike_btn glyphicon glyphicon-thumbs-down" id="unliked_btn_<%=post.id%>" style="<%=liked ? '' : 'display:none;' %>"
-								data-id="<%=post.id%>" data-url="<%=delete_like_post_path(post, user_id: current_user.id)%>">unlike</a>
-							<!-- <%= link_to "", add_like_post_path(post, user_id: current_user.id, show:"false"), class: "like_btn glyphicon glyphicon-thumbs-up" %> -->
-							<a href="#" class="like_btn glyphicon glyphicon-thumbs-up" id="liked_btn_<%=post.id%>" style="<%= liked ? 'display:none	;' : '' %>"
-								data-id="<%=post.id%>" data-url="<%=add_like_post_path(post, user_id: current_user.id)%>">like</a>
-					<% end %>
-					<span id="like_count_<%=post.id%>"><%= post.likes.count %></span>
-
-					<!-- <button type="button" name="button" class="glyphicon glyphicon-thumbs-up"></button> -->
-				</article>
-			</div>
-		<% if index % 3 == 2 %>
-      </div>
-    <%end%>
-    <%end%>
-  </div>
+						<div id="like_partial_<%=post.id%>">
+								<%= render "posts/like-btn", liked: @liked, post: post %>
+						</div>
+				<% end %>
+				<!-- <button type="button" name="button" class="glyphicon glyphicon-thumbs-up"></button> -->
+			</article>
+		</div>
+	<% if index % 3 == 2 %>
+		</div>
+	<%end%>
+	<%end%>
 </div>
-<script type="text/javascript">
-$(".like_btn, .unlike_btn").click(function(){
-	let post_id = $(this).data("id");
+</div>
 
-	let before_count = parseInt($("#like_count_"+post_id).text());
-	if($("#liked_btn_"+post_id).css("display")=="none") {
-		$("#like_count_"+post_id).text(before_count-1);
-	}
-	else {
-		$("#like_count_"+post_id).text(before_count+1);
-	}
-
-	$.get($(this).data("url")); //redirect_paths
-
-	$("#liked_btn_"+post_id).toggle();
-	$("#unliked_btn_"+post_id).toggle();
-	console.log("hi");
-	return false;
+<script>
+$(function(){
+	$(".like_btn, .dislike_btn ").click(function () {
+		console.log("old");
+		let post_id = $(this).data("id");
+		let redirect_path = $(this).data("url");
+		$("#like_btn_"+post_id).toggle();
+		$("#dislike_btn_"+post_id).toggle();
+		$.get(redirect_path);
+		let before_value = parseInt($("#like-count-"+post_id).text());
+		return false;
+	})
 })
 </script>
