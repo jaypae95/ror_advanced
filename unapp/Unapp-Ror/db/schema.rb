@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190214112625) do
+ActiveRecord::Schema.define(version: 20190509124528) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20190214112625) do
     t.text "body"
     t.string "username"
     t.integer "user_id"
+    t.string "avatar"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

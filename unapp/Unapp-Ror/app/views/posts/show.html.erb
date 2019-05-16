@@ -10,6 +10,6 @@
     <%= link_to "", add_like_post_path(@post, user_id: current_user.id, show: "true"), class: "glyphicon glyphicon-thumbs-up" %>
   <% end %>
   <%= @post.likes.count %>
-
+  <%= image_tag @post.avatar, style: "width:100px; height: 100px"%>
   <%= link_to "delete", post_path(@post), data: {method: :delete} %>
 </div>
